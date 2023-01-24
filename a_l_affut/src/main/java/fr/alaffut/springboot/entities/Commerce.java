@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.alaffut.springboot.enums.CategorieCommerce;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,12 +45,15 @@ public class Commerce implements Serializable {
 	private String ville;
 	
     private String url;
-	
+
     @Lob
 	private byte [] image;
 	
     @Column(nullable=false)
 	private String descriptif;
+    
+    @Enumerated(EnumType.STRING)
+    private CategorieCommerce categorie;
     
     @OneToMany(mappedBy = "commerce")
     private List<CodePromo> codesPromos=new ArrayList<>();
@@ -56,8 +62,10 @@ public class Commerce implements Serializable {
 	   public Commerce() {
 	    }
 
+
     public Commerce(String nom, String adresse, int codePostal, String ville, String url, byte[] image,
-            String descriptif) {
+            String descriptif, CategorieCommerce categorie, List<CodePromo> codesPromos) {
+        super();
         this.nom = nom;
         this.adresse = adresse;
         this.codePostal = codePostal;
@@ -65,7 +73,10 @@ public class Commerce implements Serializable {
         this.url = url;
         this.image = image;
         this.descriptif = descriptif;
+        this.categorie = categorie;
+        this.codesPromos = codesPromos;
     }
+
 
     public int getVersion() {
         return version;
@@ -138,13 +149,26 @@ public class Commerce implements Serializable {
     public void setDescriptif(String descriptif) {
         this.descriptif = descriptif;
     }
+    
+    
+
+    public List<CodePromo> getCodesPromos() {
+        return codesPromos;
+    }
+
+    public void setCodesPromos(List<CodePromo> codesPromos) {
+        this.codesPromos = codesPromos;
+    }
+
 
     @Override
     public String toString() {
         return "Commerce [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", codePostal=" + codePostal
-                + ", ville=" + ville + ", url=" + url + ", image=" + Arrays.toString(image) + ", descriptif="
-                + descriptif + "]";
+                + ", ville=" + ville + ", url=" + url +  ", descriptif="
+                + descriptif + ", categorie=" + categorie + ", codesPromos=" + codesPromos + "]";
     }
+
+
 
     
 	   

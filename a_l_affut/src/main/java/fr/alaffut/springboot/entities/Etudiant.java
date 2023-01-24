@@ -134,6 +134,16 @@ public class Etudiant implements Serializable {
     public void setEtablissementScolaire(String etablissementScolaire) {
         this.etablissementScolaire = etablissementScolaire;
     }
+    
+    
+
+    public List<Evenement> getEvenements() {
+        return evenements;
+    }
+
+    public void setEvenements(List<Evenement> evenements) {
+        this.evenements = evenements;
+    }
 
     @Override
     public String toString() {

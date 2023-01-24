@@ -65,6 +65,15 @@ public class TypeCode implements Serializable {
         this.nom = nom;
     }
 
+    
+    public List<CodePromo> getCodesPromos() {
+        return codesPromos;
+    }
+
+    public void setCodesPromos(List<CodePromo> codesPromos) {
+        this.codesPromos = codesPromos;
+    }
+
     @Override
     public String toString() {
         return "TypeCode [id=" + id + ", nom=" + nom + "]";

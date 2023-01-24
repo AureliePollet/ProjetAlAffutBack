@@ -82,6 +82,24 @@ public class CodePromo implements Serializable {
         this.datefin = datefin;
     }
     
+    
+    
+    public Commerce getCommerce() {
+        return commerce;
+    }
+
+    public void setCommerce(Commerce commerce) {
+        this.commerce = commerce;
+    }
+
+    public TypeCode getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(TypeCode typeCode) {
+        this.typeCode = typeCode;
+    }
+
     @Override
     public String toString() {
         return "CodePromo [id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", datefin=" + datefin + "]";

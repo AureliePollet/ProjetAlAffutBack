@@ -108,6 +108,24 @@ public class Evenement implements Serializable {
     public void setNbPlaces(int nbPlaces) {
         this.nbPlaces = nbPlaces;
     }
+    
+    
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
 
     @Override
     public String toString() {
