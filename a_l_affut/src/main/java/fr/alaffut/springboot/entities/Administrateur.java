@@ -23,11 +23,13 @@ public class Administrateur implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
+
     @Column(length = 50, nullable=false)
     private String nom;
     
     @Column(length = 50, nullable=false)
     private String prenom;
+    
     
     @Column(length = 100, nullable=false)
     private String email;

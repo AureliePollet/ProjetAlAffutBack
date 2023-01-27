@@ -7,7 +7,9 @@ import fr.alaffut.springboot.dto.EvenementDto;
 
 public interface EvenementService {
     
-    List<EvenementDto> getAllEvents(Pageable page);
+    List<EvenementDto> getAllEvents();
+    
+    EvenementDto saveOrUpdate(EvenementDto evenement);
     
     
 }
