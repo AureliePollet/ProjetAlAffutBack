@@ -21,8 +21,8 @@ public class EvenementController {
   
     
     @PostMapping(value="/evenement", consumes="application/json", produces="application/json")
-    public EvenementDto ajoutEvenement(@RequestBody EvenementDto produitDto) { 
-        return service.saveOrUpdate(produitDto);
+    public EvenementDto ajoutEvenement(@RequestBody EvenementDto evenementDto) { 
+        return service.saveOrUpdate(evenementDto);
     }
 
 }
