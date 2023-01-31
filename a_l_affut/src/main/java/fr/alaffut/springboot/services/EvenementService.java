@@ -14,5 +14,6 @@ public interface EvenementService {
     
     EvenementDto saveOrUpdate(EvenementDto evenement);
     
+    void deleteEvent(long id);
     
 }

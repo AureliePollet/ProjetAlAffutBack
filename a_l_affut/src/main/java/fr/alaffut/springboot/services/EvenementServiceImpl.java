@@ -38,4 +38,9 @@ public class EvenementServiceImpl implements EvenementService {
         return mapper.map(tmp, EvenementDto.class);
     }
 
+    @Override
+    public void deleteEvent(long id) {
+        eventRepo.deleteById(id);
+    }
+
 }
