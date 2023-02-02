@@ -126,6 +126,16 @@ public class Evenement implements Serializable {
     public void setEtudiants(List<Etudiant> etudiants) {
         this.etudiants = etudiants;
     }
+    
+    
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
     @Override
     public String toString() {

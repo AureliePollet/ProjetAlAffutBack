@@ -3,6 +3,8 @@ package fr.alaffut.springboot.dto;
 import java.time.LocalDate;
 
 public class EvenementDto {
+    
+    private int version;
 
     private long id;
     
@@ -73,6 +75,15 @@ public class EvenementDto {
     public void setImage(byte[] image) {
         this.image = image;
     }
+    
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
 
     @Override
     public String toString() {

@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class CommerceDto {
     
+    private int version;
+    
     private long id;
     
     private String nom;
@@ -82,6 +84,15 @@ public class CommerceDto {
 
     public void setDescriptif(String descriptif) {
         this.descriptif = descriptif;
+    }
+    
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override

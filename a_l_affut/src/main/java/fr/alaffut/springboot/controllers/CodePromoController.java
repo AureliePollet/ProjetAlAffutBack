@@ -1,5 +1,6 @@
 package fr.alaffut.springboot.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,38 +16,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.alaffut.springboot.dto.TypeCodeDto;
-import fr.alaffut.springboot.services.TypeCodeService;
+import fr.alaffut.springboot.dto.CodePromoDto;
+import fr.alaffut.springboot.services.CodePromoService;
 
 @RestController
-@RequestMapping("/typecode")
-public class TypeCodeController {
+@RequestMapping("/codepromo")
+public class CodePromoController {
     
     @Autowired
-    private TypeCodeService service;
+    CodePromoService service;
     
+
     @PostMapping(value="/add", consumes="application/json", produces="application/json")
-    public TypeCodeDto ajoutEvenement(@RequestBody TypeCodeDto typeCodeDto) { 
-      return service.saveOrUpdate(typeCodeDto);
-  }
+    public CodePromoDto ajoutCodePromo(@RequestBody CodePromoDto codePromoDto) { 
+        return service.saveOrUpdate(codePromoDto);
+    }
     
 
     @GetMapping(value="/all", produces="application/json")
-    public List<TypeCodeDto> getAllTypeCode(){
-        return service.getAllTypeCode(Pageable.unpaged());
+    public List<CodePromoDto> getAllCodePromo(){
+        return service.getAllCodePromo(Pageable.unpaged());
     }
     
     @PutMapping(value="/update/{id}", consumes="application/json", produces="application/json")
-    public TypeCodeDto updateCode(@PathVariable long id,@RequestBody TypeCodeDto typeCodeDto) {
-        typeCodeDto.setId(id);
-        return service.saveOrUpdate(typeCodeDto);
+    public CodePromoDto updateCodePromo(@PathVariable long id,@RequestBody CodePromoDto codePromoDto) {
+        codePromoDto.setId(id);
+        return service.saveOrUpdate(codePromoDto);
     }
     
 
     @DeleteMapping(value="/delete/{id}", produces="text/plain")
-    public ResponseEntity<String> deleteCode( @PathVariable long id) {
+    public ResponseEntity<String> deleteCodePromo( @PathVariable long id) {
         try {
-            service.deleteTypeCode(id);
+            service.deleteCodePromo(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,5 +57,6 @@ public class TypeCodeController {
     }
     
 
+    
 
 }

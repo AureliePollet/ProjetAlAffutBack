@@ -15,38 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.alaffut.springboot.dto.TypeCodeDto;
-import fr.alaffut.springboot.services.TypeCodeService;
+import fr.alaffut.springboot.dto.CommerceDto;
+import fr.alaffut.springboot.services.CommerceService;
 
 @RestController
-@RequestMapping("/typecode")
-public class TypeCodeController {
+@RequestMapping("/commerce")
+public class CommerceController {
     
     @Autowired
-    private TypeCodeService service;
+    private CommerceService service;
     
+
     @PostMapping(value="/add", consumes="application/json", produces="application/json")
-    public TypeCodeDto ajoutEvenement(@RequestBody TypeCodeDto typeCodeDto) { 
-      return service.saveOrUpdate(typeCodeDto);
-  }
+    public CommerceDto ajoutCommerce(@RequestBody CommerceDto commerceDto) { 
+        return service.saveOrUpdate(commerceDto);
+    }
     
 
     @GetMapping(value="/all", produces="application/json")
-    public List<TypeCodeDto> getAllTypeCode(){
-        return service.getAllTypeCode(Pageable.unpaged());
+    public List<CommerceDto> getAllCommerce(){
+        return service.getAllCommerce(Pageable.unpaged());
     }
     
     @PutMapping(value="/update/{id}", consumes="application/json", produces="application/json")
-    public TypeCodeDto updateCode(@PathVariable long id,@RequestBody TypeCodeDto typeCodeDto) {
-        typeCodeDto.setId(id);
-        return service.saveOrUpdate(typeCodeDto);
+    public CommerceDto updateCommerce(@PathVariable long id,@RequestBody CommerceDto commerceDto) {
+        commerceDto.setId(id);
+        return service.saveOrUpdate(commerceDto);
     }
     
 
     @DeleteMapping(value="/delete/{id}", produces="text/plain")
-    public ResponseEntity<String> deleteCode( @PathVariable long id) {
+    public ResponseEntity<String> deleteCommerce( @PathVariable long id) {
         try {
-            service.deleteTypeCode(id);
+            service.deleteCommerce(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,6 +55,12 @@ public class TypeCodeController {
        
     }
     
-
+    @GetMapping(value="/filtre/{nom}", produces="application/json")
+    public List<CommerceDto> getCommerceBytypeCode(@PathVariable String nom){
+        return service.getCommerceByTypeCode(nom);
+    }
+    
+    
+    
 
 }

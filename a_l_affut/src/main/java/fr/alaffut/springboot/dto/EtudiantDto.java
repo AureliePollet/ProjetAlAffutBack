@@ -6,6 +6,8 @@ import fr.alaffut.springboot.enums.Civilite;
 
 public class EtudiantDto {
     
+    private int version;
+    
     private long id;
     
     private Civilite civilite;
@@ -84,6 +86,15 @@ public class EtudiantDto {
 
     public void setEtablissementScolaire(String etablissementScolaire) {
         this.etablissementScolaire = etablissementScolaire;
+    }
+    
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override

@@ -3,6 +3,8 @@ package fr.alaffut.springboot.dto;
 import java.time.LocalDate;
 
 public class CodePromoDto {
+    
+    private int version;
 
     private long id;
     
@@ -42,6 +44,15 @@ public class CodePromoDto {
 
     public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
+    }
+    
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override

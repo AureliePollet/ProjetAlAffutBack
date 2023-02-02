@@ -2,6 +2,8 @@ package fr.alaffut.springboot.dto;
 
 public class TypeCodeDto {
     
+    private int version;
+    
     public long id;
     
     public String nom;
@@ -20,6 +22,15 @@ public class TypeCodeDto {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override

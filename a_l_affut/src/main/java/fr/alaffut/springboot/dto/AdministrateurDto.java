@@ -2,6 +2,7 @@ package fr.alaffut.springboot.dto;
 
 public class AdministrateurDto {
     
+    private int version;
     private long id;
     private String nom;
     private String prenom;
@@ -36,6 +37,14 @@ public class AdministrateurDto {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    
+    public int getVersion() {
+        return version;
+    }
+    public void setVersion(int version) {
+        this.version = version;
     }
     @Override
     public String toString() {
