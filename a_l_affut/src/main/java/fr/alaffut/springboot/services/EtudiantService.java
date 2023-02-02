@@ -14,7 +14,7 @@ public interface EtudiantService {
     List<EtudiantDto> getAllEtudiant (Pageable page);
     
     
-    EtudiantDto saverOrUpdate(EtudiantDto etudiant);
+    EtudiantDto saveOrUpdate (EtudiantDto etudiant);
     
     void deleteEtudiant(long id);
     

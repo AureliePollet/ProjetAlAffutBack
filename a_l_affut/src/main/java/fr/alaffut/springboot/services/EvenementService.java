@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 
+import fr.alaffut.springboot.dto.EtudiantDto;
 import fr.alaffut.springboot.dto.EvenementDto;
 
 public interface EvenementService {
@@ -15,5 +16,7 @@ public interface EvenementService {
     EvenementDto saveOrUpdate(EvenementDto evenement);
     
     void deleteEvent(long id);
+    
+    EvenementDto ajoutEtudiantEvement(EvenementDto evt,long id);
     
 }

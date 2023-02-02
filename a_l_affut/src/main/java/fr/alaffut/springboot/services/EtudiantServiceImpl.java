@@ -30,7 +30,7 @@ public class EtudiantServiceImpl implements EtudiantService {
 	}
 
 	@Override
-	public EtudiantDto saverOrUpdate(EtudiantDto etudiant) {
+	public EtudiantDto saveOrUpdate(EtudiantDto etudiant) {
 		Etudiant etud = etudRepo.saveAndFlush(mapper.map(etudiant, Etudiant.class));
 		return mapper.map(etud, EtudiantDto.class);
 	}

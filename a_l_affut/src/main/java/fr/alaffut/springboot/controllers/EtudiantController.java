@@ -16,51 +16,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.alaffut.springboot.dto.EtudiantDto;
-import fr.alaffut.springboot.dto.EvenementDto;
-import fr.alaffut.springboot.services.EvenementService;
+import fr.alaffut.springboot.services.EtudiantService;
+
+
 
 @RestController
-@RequestMapping("/event")
-public class EvenementController {
+@RequestMapping("/etudiant")
+public class EtudiantController {
     
     @Autowired
-    private EvenementService service;
-  
+    private EtudiantService service;
+    
     
     @PostMapping(value="/add", consumes="application/json", produces="application/json")
-    public EvenementDto ajoutEvenement(@RequestBody EvenementDto evenementDto) { 
-        return service.saveOrUpdate(evenementDto);
+    public EtudiantDto ajoutEtudiant(@RequestBody EtudiantDto etudiantDto) { 
+        return service.saveOrUpdate(etudiantDto);
     }
     
 
     @GetMapping(value="/all", produces="application/json")
-    public List<EvenementDto> getAllEvents(){
-        return service.getAllEvents(Pageable.unpaged());
+    public List<EtudiantDto> getAllEtudiant(){
+        return service.getAllEtudiant(Pageable.unpaged());
     }
     
+    
     @PutMapping(value="/update/{id}", consumes="application/json", produces="application/json")
-    public EvenementDto updateEvent(@PathVariable long id,@RequestBody EvenementDto evenementDto) {
-        evenementDto.setId(id);
-        return service.saveOrUpdate(evenementDto);
+    public EtudiantDto updateEtudiant(@PathVariable long id,@RequestBody EtudiantDto etudiantDto) {
+        etudiantDto.setId(id);
+        return service.saveOrUpdate(etudiantDto);
     }
     
 
     @DeleteMapping(value="/delete/{id}", produces="text/plain")
-    public ResponseEntity<String> deleteEvent( @PathVariable long id) {
+    public ResponseEntity<String> deleteEtudiant( @PathVariable long id) {
         try {
-            service.deleteEvent(id);
+            service.deleteEtudiant(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
        
-    }
-    
-    @PostMapping(value="/addetudiant/{id}", consumes="application/json", produces="application/json")
-    public EvenementDto ajoutEtudiantEvenement(@RequestBody EvenementDto evenementDto, @PathVariable long id) {
-    
-       return service.ajoutEtudiantEvement(evenementDto,id);
-  
     }
 
 }

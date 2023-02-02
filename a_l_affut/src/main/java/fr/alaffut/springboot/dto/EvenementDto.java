@@ -1,6 +1,13 @@
 package fr.alaffut.springboot.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import fr.alaffut.springboot.entities.Etudiant;
 
 public class EvenementDto {
     
@@ -19,6 +26,19 @@ public class EvenementDto {
     private int nbPlaces;
     
     private byte [] image;
+    
+    //@JsonManagedReference
+    private List<EtudiantDto> etudiants= new ArrayList<>();
+
+    
+
+    public List<EtudiantDto> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<EtudiantDto> etudiants) {
+        this.etudiants = etudiants;
+    }
 
     public long getId() {
         return id;
@@ -83,6 +103,7 @@ public class EvenementDto {
     public void setVersion(int version) {
         this.version = version;
     }
+    
 
 
     @Override
