@@ -1,11 +1,13 @@
 package fr.alaffut.springboot.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +21,7 @@ import fr.alaffut.springboot.dto.EtudiantDto;
 import fr.alaffut.springboot.services.EtudiantService;
 
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/etudiant")
 public class EtudiantController {
@@ -57,5 +59,16 @@ public class EtudiantController {
         }
        
     }
-
+    
+    @PostMapping(value="/login", consumes="application/json", produces="application/json")
+    public ResponseEntity login(@RequestBody EtudiantDto etudiantDto) {
+        Optional<EtudiantDto> stud =  service.login(etudiantDto);
+        if (stud.isPresent()) {
+            return new ResponseEntity<>(stud.get() ,HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+ 
 }

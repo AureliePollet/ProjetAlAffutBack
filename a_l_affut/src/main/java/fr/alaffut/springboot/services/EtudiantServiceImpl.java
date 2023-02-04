@@ -1,6 +1,7 @@
 package fr.alaffut.springboot.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -39,5 +40,10 @@ public class EtudiantServiceImpl implements EtudiantService {
 	public void deleteEtudiant(long id) {
 		etudRepo.deleteById(id);
 	}
+
+    @Override
+    public Optional<EtudiantDto> login(EtudiantDto etudiant) {
+        return etudRepo.findByEmailAndPassword(etudiant.getEmail(), etudiant.getPassword()).map(i -> mapper.map(i, EtudiantDto.class));
+    }
 
 }
