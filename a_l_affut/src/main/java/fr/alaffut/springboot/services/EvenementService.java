@@ -2,6 +2,7 @@ package fr.alaffut.springboot.services;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -19,4 +20,5 @@ public interface EvenementService {
     
     EvenementDto ajoutEtudiantEvement(EvenementDto evt,long id);
     
+    List<EvenementDto> getEventsByDate(int date);
 }

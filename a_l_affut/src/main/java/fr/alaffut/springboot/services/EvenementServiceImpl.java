@@ -2,6 +2,7 @@ package fr.alaffut.springboot.services;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -65,12 +66,14 @@ public class EvenementServiceImpl implements EvenementService {
         etudRepo.saveAndFlush(etudiant);
         }
      
-        
         Evenement tmp=  eventRepo.saveAndFlush(evt);
       
-      
         return mapper.map(tmp, EvenementDto.class);
+    }
 
+    @Override
+    public List<EvenementDto> getEventsByDate(int date) {
+        return eventRepo.trouverEvenementParDate(date).stream().map(p -> mapper.map(p, EvenementDto.class)).collect(Collectors.toList());  
     }
 
 }

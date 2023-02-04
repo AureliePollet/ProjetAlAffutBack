@@ -1,5 +1,6 @@
 package fr.alaffut.springboot.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class EvenementController {
     @GetMapping(value="/all", produces="application/json")
     public List<EvenementDto> getAllEvents(){
         return service.getAllEvents(Pageable.unpaged());
+    }
+    
+    @GetMapping(value="/allbydate/{date}", produces="application/json")
+    public List<EvenementDto> getAllEventsByDate( @PathVariable int date){
+        return service.getEventsByDate(date);
     }
     
     @PutMapping(value="/update/{id}", consumes="application/json", produces="application/json")

@@ -46,10 +46,10 @@ public class Commerce implements Serializable {
 	
     private String url;
 
-    @Lob
-	private byte [] image;
+    @Column(name="url_image")
+    private String urlImage;
 	
-    @Column(nullable=false)
+    @Column(nullable=false, length=2500)
 	private String descriptif;
     
     @Enumerated(EnumType.STRING)
@@ -63,19 +63,46 @@ public class Commerce implements Serializable {
 	    }
 
 
-    public Commerce(String nom, String adresse, int codePostal, String ville, String url, byte[] image,
-            String descriptif, CategorieCommerce categorie, List<CodePromo> codesPromos) {
-        super();
+
+    public Commerce(long id, String nom, String adresse, int codePostal, String ville, String url, String urlImage,
+            String descriptif, CategorieCommerce categorie) {
+        this.id = id;
         this.nom = nom;
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
         this.url = url;
-        this.image = image;
+        this.urlImage = urlImage;
         this.descriptif = descriptif;
         this.categorie = categorie;
-        this.codesPromos = codesPromos;
+
     }
+
+    
+
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+
+
+    public CategorieCommerce getCategorie() {
+        return categorie;
+    }
+
+
+
+    public void setCategorie(CategorieCommerce categorie) {
+        this.categorie = categorie;
+    }
+
 
 
     public int getVersion() {
@@ -134,13 +161,6 @@ public class Commerce implements Serializable {
         this.url = url;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     public String getDescriptif() {
         return descriptif;

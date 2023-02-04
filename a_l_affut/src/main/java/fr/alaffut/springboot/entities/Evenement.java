@@ -31,20 +31,19 @@ public class Evenement implements Serializable {
     @Column(length = 250, nullable=false)
     private String nom;
     
-    
     private LocalDate date;
     
     @Column(length = 250, nullable=false)
     private String adresse;
     
-    @Column(nullable=false)
+    @Column(length= 2500,nullable=false)
     private String descriptif;
     
     @Column(name="nb_places")
     private int nbPlaces;
     
-    @Lob
-    private byte [] image;
+    @Column(name="url_image")
+    private String urlImage;
     
     @ManyToMany(mappedBy = "evenements")
     private List<Etudiant> etudiants=new ArrayList<>();
@@ -111,12 +110,12 @@ public class Evenement implements Serializable {
     
     
 
-    public byte[] getImage() {
-        return image;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public List<Etudiant> getEtudiants() {

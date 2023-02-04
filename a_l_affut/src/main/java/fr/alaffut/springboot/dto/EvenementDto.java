@@ -25,13 +25,12 @@ public class EvenementDto {
     
     private int nbPlaces;
     
-    private byte [] image;
+    private String urlImage;
     
     //@JsonManagedReference
     private List<EtudiantDto> etudiants= new ArrayList<>();
 
     
-
     public List<EtudiantDto> getEtudiants() {
         return etudiants;
     }
@@ -88,14 +87,15 @@ public class EvenementDto {
         this.nbPlaces = nbPlaces;
     }
 
-    public byte[] getImage() {
-        return image;
+    
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
-    
+
     public int getVersion() {
         return version;
     }

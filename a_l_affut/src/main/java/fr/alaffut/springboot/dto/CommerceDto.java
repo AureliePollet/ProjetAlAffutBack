@@ -18,7 +18,7 @@ public class CommerceDto {
     
     private String url;
     
-    private byte[] image;
+    private String urlImage;
     
     private String descriptif;
 
@@ -70,12 +70,12 @@ public class CommerceDto {
         this.url = url;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public String getDescriptif() {
