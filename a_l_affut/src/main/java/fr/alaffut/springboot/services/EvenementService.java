@@ -18,7 +18,7 @@ public interface EvenementService {
     
     void deleteEvent(long id);
     
-    EvenementDto ajoutEtudiantEvement(EvenementDto evt,long id);
+    EvenementDto ajoutEtudiantEvement(long idEv,long idEt) throws Exception;
     
     List<EvenementDto> getEventsByDate(int date);
 }

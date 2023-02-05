@@ -4,7 +4,7 @@ package fr.alaffut.springboot.services;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -52,11 +52,14 @@ public class EvenementServiceImpl implements EvenementService {
     }
 
     @Override
-    public EvenementDto ajoutEtudiantEvement( EvenementDto evenement,long id) {
-       Etudiant etudiant= etudRepo.findById(id).get();
-        
-        Evenement evt= mapper.map(evenement, Evenement.class);
-        if(evenement.getNbPlaces()>0) {
+    public EvenementDto ajoutEtudiantEvement( long idEv,long idEt) throws Exception {
+       Etudiant etudiant= etudRepo.findById(idEt).get();
+       Optional<Evenement> evtOpt= eventRepo.findById(idEv);
+       if(evtOpt.isEmpty()) {
+           throw new Exception();
+       }
+       Evenement evt= evtOpt.get();
+        if(evt.getNbPlaces()>0) {
               
          int nbPlace=evt.getNbPlaces();
         evt.setNbPlaces(--nbPlace);
@@ -65,10 +68,9 @@ public class EvenementServiceImpl implements EvenementService {
         etudiant.getEvenements().add(evt);
         etudRepo.saveAndFlush(etudiant);
         }
-     
-        Evenement tmp=  eventRepo.saveAndFlush(evt);
-      
-        return mapper.map(tmp, EvenementDto.class);
+        
+        eventRepo.saveAndFlush(evt);
+        return mapper.map(evt, EvenementDto.class);
     }
 
     @Override

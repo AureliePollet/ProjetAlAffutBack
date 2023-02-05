@@ -26,7 +26,7 @@ import fr.alaffut.springboot.services.CodePromoService;
 public class CodePromoController {
     
     @Autowired
-    CodePromoService service;
+    private CodePromoService service;
     
 
     @PostMapping(value="/add", consumes="application/json", produces="application/json")

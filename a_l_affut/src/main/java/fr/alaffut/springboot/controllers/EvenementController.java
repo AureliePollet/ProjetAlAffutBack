@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import fr.alaffut.springboot.dto.EtudiantDto;
 import fr.alaffut.springboot.dto.EvenementDto;
 import fr.alaffut.springboot.services.EvenementService;
@@ -64,10 +66,15 @@ public class EvenementController {
        
     }
     
-    @PostMapping(value="/addetudiant/{id}", consumes="application/json", produces="application/json")
-    public EvenementDto ajoutEtudiantEvenement(@RequestBody EvenementDto evenementDto, @PathVariable long id) {
-    
-       return service.ajoutEtudiantEvement(evenementDto,id);
+    @PostMapping(value="/addetudiant/{id}", produces="application/json")
+    public ResponseEntity ajoutEtudiantEvenement(@RequestBody ObjectNode node, @PathVariable long id) {
+        long idEvt = node.get("eventId").asLong();
+       try {
+         service.ajoutEtudiantEvement(idEvt,id);
+         return ResponseEntity.ok().build();
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().build();
+    }
   
     }
 
