@@ -2,6 +2,8 @@ package fr.alaffut.springboot.dto;
 
 import java.util.Arrays;
 
+import fr.alaffut.springboot.enums.CategorieCommerce;
+
 public class CommerceDto {
     
     private int version;
@@ -19,8 +21,11 @@ public class CommerceDto {
     private String url;
     
     private String urlImage;
-    
+   
+
     private String descriptif;
+    
+    private CategorieCommerce categorie;
 
     public long getId() {
         return id;
@@ -93,6 +98,15 @@ public class CommerceDto {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+    
+    
+    public CategorieCommerce getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(CategorieCommerce categorie) {
+        this.categorie = categorie;
     }
 
     @Override
