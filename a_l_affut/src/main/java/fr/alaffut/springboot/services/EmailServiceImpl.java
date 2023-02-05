@@ -1,5 +1,6 @@
 package fr.alaffut.springboot.services;
 
+import fr.alaffut.springboot.dto.ContactDto;
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -14,26 +15,21 @@ import java.util.Properties;
 
 @Service
 public class EmailServiceImpl implements EmailService{
+    private final Session session;
 
-    @Override
-    public void sendValidationEmail(String destinationAddress) {
+    public EmailServiceImpl() {
+        this.session = getSession();
+    }
 
-        // Sender's email ID needs to be mentioned
-        String from = "alaffut59@gmail.com";
-
-        // Assuming you are sending email from through gmails smtp
+    private Session getSession() {
         String host = "smtp.gmail.com";
 
-        // Get system properties
         Properties properties = System.getProperties();
-
-        // Setup mail server
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -41,29 +37,36 @@ public class EmailServiceImpl implements EmailService{
             }
         });
 
-        // Used to debug SMTP issues
         session.setDebug(true);
+        return session;
+    }
+
+    @Override
+    public void sendValidationEmail(String destinationAddress) {
+
+        String from = "alaffut59@gmail.com";
 
         try {
-            // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-
-            // Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinationAddress));
-
-            // Set Subject: header field
             message.setSubject("This is the Subject Line!");
-
-            // Now set the actual message
             message.setText("This is actual message");
-
-            System.out.println("sending...");
-            // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendContactRequest(ContactDto contactDto) {
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(contactDto.getContactEmail()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("aurelie.pollet59@gmail.com"));
+            message.setSubject(contactDto.getContactSubject() + " par " + contactDto.getContactFirstName() + " " + contactDto.getContactLastName() + " - " + contactDto.getContactEmail());
+            message.setText(contactDto.getContactContent());
+            Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
