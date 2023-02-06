@@ -27,6 +27,10 @@ public class EvenementDto {
     
     private String urlImage;
     
+    private String url;
+
+
+
     //@JsonManagedReference
     private List<EtudiantDto> etudiants= new ArrayList<>();
 
@@ -104,6 +108,13 @@ public class EvenementDto {
         this.version = version;
     }
     
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 
     @Override

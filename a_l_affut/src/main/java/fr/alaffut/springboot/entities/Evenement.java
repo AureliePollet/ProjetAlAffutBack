@@ -45,6 +45,8 @@ public class Evenement implements Serializable {
     @Column(name="url_image")
     private String urlImage;
     
+    private String url;
+    
     @ManyToMany(mappedBy = "evenements")
     private List<Etudiant> etudiants=new ArrayList<>();
 
@@ -136,7 +138,13 @@ public class Evenement implements Serializable {
         this.version = version;
     }
     
-    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     @Override
     public String toString() {

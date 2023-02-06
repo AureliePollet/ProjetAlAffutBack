@@ -50,8 +50,8 @@ public class EmailServiceImpl implements EmailService{
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinationAddress));
-            message.setSubject("This is the Subject Line!");
-            message.setText("This is actual message");
+            message.setSubject("On se retrouve bientôt!");
+            message.setText("Votre inscription a bien été prise en compte, à très bientôt");
             Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();
