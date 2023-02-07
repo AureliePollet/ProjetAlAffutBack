@@ -43,7 +43,7 @@ public class CommerceServiceImpl implements CommerceService {
 
     @Override
     public List<CommerceDto> getCommerceByTypeCode(String nom) {
-   return  comRepo.findByCodesPromosTypeCodeNom(nom).stream().map(p -> mapper.map(p, CommerceDto.class)).collect(Collectors.toList());
+   return  comRepo.findByTypeCode(nom).stream().map(p -> mapper.map(p, CommerceDto.class)).collect(Collectors.toList());
     }
 
 }

@@ -57,7 +57,7 @@ public class CommerceController {
        
     }
     
-    @GetMapping(value="/filtre/{nom}", produces="application/json")
+    @GetMapping(value="/filtre", produces="application/json")
     public List<CommerceDto> getCommerceBytypeCode(@PathVariable String nom){
         return service.getCommerceByTypeCode(nom);
     }

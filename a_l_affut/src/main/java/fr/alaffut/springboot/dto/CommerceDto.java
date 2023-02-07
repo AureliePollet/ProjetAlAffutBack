@@ -3,6 +3,7 @@ package fr.alaffut.springboot.dto;
 import java.util.Arrays;
 
 import fr.alaffut.springboot.enums.CategorieCommerce;
+import fr.alaffut.springboot.enums.TypeCode;
 
 public class CommerceDto {
     
@@ -14,7 +15,7 @@ public class CommerceDto {
     
     private String adresse;
     
-    private int codePostal;
+    private String codePostal;
     
     private String ville;
     
@@ -26,6 +27,19 @@ public class CommerceDto {
     private String descriptif;
     
     private CategorieCommerce categorie;
+    
+    private TypeCode typeCode;
+    
+    private String nomCodePromo;
+    
+
+    public TypeCode getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(TypeCode typeCode) {
+        this.typeCode = typeCode;
+    }
 
     public long getId() {
         return id;
@@ -51,11 +65,13 @@ public class CommerceDto {
         this.adresse = adresse;
     }
 
-    public int getCodePostal() {
+
+
+    public String getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(int codePostal) {
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 
@@ -107,6 +123,16 @@ public class CommerceDto {
 
     public void setCategorie(CategorieCommerce categorie) {
         this.categorie = categorie;
+    }
+    
+    
+
+    public String getNomCodePromo() {
+        return nomCodePromo;
+    }
+
+    public void setNomCodePromo(String nomCodePromo) {
+        this.nomCodePromo = nomCodePromo;
     }
 
     @Override

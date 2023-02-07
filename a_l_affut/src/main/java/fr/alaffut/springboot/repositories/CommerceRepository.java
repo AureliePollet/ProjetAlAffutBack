@@ -11,5 +11,7 @@ public interface CommerceRepository extends JpaRepository<Commerce, Long> {
     List<Commerce> findByNom (String nom);
     
     List<Commerce> findByCodesPromosTypeCodeNom(String nom);
+    
+    List<Commerce> findByTypeCode(String nom);
 
 }

@@ -1,0 +1,6 @@
+package fr.alaffut.springboot.enums;
+
+public enum TypeCode {
+
+    ASIATIQUE,FASTFOOD,ITALIEN,MEXICAIN,COFFEE,GRILLADES,TECHNOLOGIE,MODE,HOBBIES,LIFESTYLE,BEAUTE
+}

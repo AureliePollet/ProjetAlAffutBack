@@ -1,11 +1,13 @@
 package fr.alaffut.springboot.entities;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import fr.alaffut.springboot.enums.CategorieCommerce;
+import fr.alaffut.springboot.enums.TypeCode;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -39,10 +41,11 @@ public class Commerce implements Serializable {
 	private String adresse;
 	
 	@Column(name="code_postal")
-	private int codePostal;
+	private String codePostal;
 	
 	@Column(length = 70)
 	private String ville;
+	
 	
     private String url;
 
@@ -55,6 +58,13 @@ public class Commerce implements Serializable {
     @Enumerated(EnumType.STRING)
     private CategorieCommerce categorie;
     
+    @Column(name = "type_code")
+    @Enumerated(EnumType.STRING)
+    private TypeCode typeCode;
+    
+    @Column(name="nom_code_promo")
+    private String nomCodePromo;
+    
     @OneToMany(mappedBy = "commerce")
     private List<CodePromo> codesPromos=new ArrayList<>();
     
@@ -64,8 +74,8 @@ public class Commerce implements Serializable {
 
 
 
-    public Commerce(long id, String nom, String adresse, int codePostal, String ville, String url, String urlImage,
-            String descriptif, CategorieCommerce categorie) {
+    public Commerce(long id, String nom, String adresse, String codePostal, String ville, String url, String urlImage,
+            String descriptif, CategorieCommerce categorie, TypeCode typeCode, String nomCodePromo) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -75,10 +85,37 @@ public class Commerce implements Serializable {
         this.urlImage = urlImage;
         this.descriptif = descriptif;
         this.categorie = categorie;
+        this.typeCode= typeCode;
+        this.nomCodePromo=nomCodePromo;
 
     }
 
     
+    
+
+
+    public String getNomCodePromo() {
+        return nomCodePromo;
+    }
+
+
+
+    public void setNomCodePromo(String nomCodePromo) {
+        this.nomCodePromo = nomCodePromo;
+    }
+
+
+
+    public TypeCode getTypeCode() {
+        return typeCode;
+    }
+
+
+
+    public void setTypeCode(TypeCode typeCode) {
+        this.typeCode = typeCode;
+    }
+
 
 
     public String getUrlImage() {
@@ -137,13 +174,19 @@ public class Commerce implements Serializable {
         this.adresse = adresse;
     }
 
-    public int getCodePostal() {
+  
+
+    public String getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(int codePostal) {
+
+
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
+
+
 
     public String getVille() {
         return ville;
